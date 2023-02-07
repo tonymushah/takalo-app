@@ -1,0 +1,18 @@
+on: 
+  push: 
+    branches:
+      - main
+
+jobs: 
+  deploy_project:
+    name: clone project to alwaysdata
+    runs-on: ubuntu-18.04
+    steps:
+      - name: ssh
+        uses: appleboy/ssh-action@v0.1.7
+        with: 
+          host: ssh-phpdeploy1.alwaysdata.net
+          username: phpdeploy1_git_action 
+          password: ${{ secrets.GIT_ACTION_PASSWORD }}
+          port: 22
+          script: git pull
