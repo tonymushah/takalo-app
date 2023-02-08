@@ -163,7 +163,7 @@ class Frontoffice extends CI_Controller {
 	public function disconnect(){
 		$data = ["id", "nom"];
 		$this->session->unset_userdata($data);
-		redirect('');
+		redirect('frontoffice');
 	}
 	public function index(){
 		if($this->validate_sessions()){
