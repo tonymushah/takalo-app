@@ -43,6 +43,7 @@ CREATE TABLE GalerieObjet (
 );
 
 
+
 INSERT INTO Utilisateur (nomUtilisateur, mdp) VALUES 
   ('utilisateur1', 'mdp1'),
   ('utilisateur2', 'mdp2'),

@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'takalo_service',
+	'hostname' => 'mysql-phpdeploy1.alwaysdata.net',
+	'username' => '299000_takalo',
 	'password' => 'takalo_password',
-	'database' => 'takalo_app',
+	'database' => 'phpdeploy1_takalo_app',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

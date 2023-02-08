@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8081/';
+$config['base_url'] = 'http://phpdeploy1.alwaysdata.net/';
 
 /*
 |--------------------------------------------------------------------------
@@ -387,7 +387,7 @@ $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_samesite'] = 'Lax';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = "/home/tonymushah/Tony_Prog/project/takalo-app/application/sessions";
+$config['sess_save_path'] = "/home/phpdeploy1/takalo-app/application/sessions";
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
