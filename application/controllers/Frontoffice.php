@@ -56,7 +56,7 @@ class Frontoffice extends CI_Controller {
                 'nom' => $result["nom"]
             );
             $this->session->set_userdata($session_data);
-            redirect('');
+            redirect('frontoffice');
         } else {
             $data = array(
                 'error' => 'Nom d\'utilisateur ou mot de passe incorrect'
