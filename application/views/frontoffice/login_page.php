@@ -36,38 +36,40 @@
 							</div>
 						</div>
 						<div class="container">
+							<div class="row">
+								<?php
+									if (isset($error) == true) {
+										echo "<div class='alert alert-danger' role='alert'>";
+										echo $error;
+										echo "</div>";
+									}
+								?>
+							</div>
 							<div class=" row cyan2-bg rounded-4">
 								<ul class="nav nav-tabs rounded-4" id="myTab" role="tablist">
 									<li class="nav-item rounded-4" role="presentation">
-										<button class="nav-link active" id="login-tab" data-bs-toggle="tab"
-											data-bs-target="#login" type="button" role="tab" aria-controls="sign-in"
-											aria-selected="true">Login</button>
+										<button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="sign-in" aria-selected="true">Login</button>
 									</li>
 									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="sign-in-tab" data-bs-toggle="tab"
-											data-bs-target="#sign-in" type="button" role="tab" aria-controls="sign-in"
-											aria-selected="false">Inscription</button>
+										<button class="nav-link" id="sign-in-tab" data-bs-toggle="tab" data-bs-target="#sign-in" type="button" role="tab" aria-controls="sign-in" aria-selected="false">Inscription</button>
 									</li>
 								</ul>
 								<div class="tab-content" id="myTabContent">
-									<div class="tab-pane fade show active" id="login" role="tabpanel"
-										aria-labelledby="home-tab" tabindex="0">
+									<div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 										<div class="container">
-											<form method="post" action="#">
+											<form method="post" action="<?php echo base_url('frontoffice/validate_credentials'); ?>">
 												<div class="row mt-3">
 													<div class="mb-3">
 														<label for="exampleFormControlInput1" class="form-label">
 															Pseudo
 														</label>
-														<input type="text" class="form-control"
-															id="exampleFormControlInput1" placeholder="" required>
+														<input type="text" class="form-control" name="nom" id="exampleFormControlInput1" placeholder="" required>
 													</div>
 													<div class="mb-3">
 														<label for="exampleFormControlInput1" class="form-label">
 															Mot de Passe
 														</label>
-														<input type="password" class="form-control"
-															id="exampleFormControlInput1" placeholder="" required>
+														<input type="password" class="form-control" name="mot_de_passe" id="exampleFormControlInput1" placeholder="" required>
 													</div>
 													<div class="mt-4 mb-4 text-center">
 														<button type="submit" class="btn btn-success">Se
@@ -77,15 +79,13 @@
 											</form>
 											<div class="mt-4 mb-4 text-center">
 												<p>
-													Pas de compte, <span onclick="to_sign_in()"
-														class=" text-info">inscriver-vous</span>
+													Pas de compte, <span onclick="to_sign_in()" class=" text-info">inscriver-vous</span>
 												</p>
 											</div>
 										</div>
 									</div>
-									<div class="tab-pane fade" id="sign-in" role="tabpanel"
-										aria-labelledby="sign-in-tab" tabindex="1">
-										<form action="#" method="post">
+									<div class="tab-pane fade" id="sign-in" role="tabpanel" aria-labelledby="sign-in-tab" tabindex="1">
+										<form method="post">
 											<div class="row">
 												<div class="col-lg-6">
 													<div class="mb-3">
@@ -96,21 +96,18 @@
 												<div class="col-lg-6">
 													<div class="mb-3">
 														<label for="pseudo-sign-in" class="form-label">Pseudo</label>
-														<input type="text" class="form-control" id="pseudo-sign-in"
-															required>
+														<input type="text" class="form-control" id="pseudo-sign-in" required>
 													</div>
 												</div>
 											</div>
 											<div class="mb-3">
 												<label for="mot-de-passe-1" class="form-label">Mot de passe</label>
-												<input type="password" class="form-control" id="mot-de-passe-1"
-													required>
+												<input type="password" class="form-control" id="mot-de-passe-1" required>
 											</div>
 											<div class="mb-3">
 												<label for="mot-de-passe-2" class="form-label">Confirmer votre mot de
 													passe</label>
-												<input type="password" class="form-control" id="mot-de-passe-2"
-													required>
+												<input type="password" class="form-control" id="mot-de-passe-2" required>
 											</div>
 											<div class="mb-4 mt-4 text-center">
 												<button type="submit" class="btn btn-success">S'inscrire</button>
@@ -118,8 +115,7 @@
 										</form>
 										<div class="mt-4 mb-4 text-center">
 											<p>
-												Deja un compte??, <span onclick="to_login()"
-													class=" text-info">connecter-vous</span>
+												Deja un compte??, <span onclick="to_login()" class=" text-info">connecter-vous</span>
 											</p>
 										</div>
 									</div>
@@ -127,9 +123,11 @@
 								<script>
 									const login_trigger = document.querySelector('#login-tab');
 									const sign_in_trigger = document.querySelector('#sign-in-tab');
+
 									function to_login() {
 										bootstrap.Tab.getInstance(login_trigger).show();
 									}
+
 									function to_sign_in() {
 										bootstrap.Tab.getInstance(sign_in_trigger).show();
 									}

@@ -116,4 +116,58 @@
 			echo "</div></a>";
 		}
 	}
+	if (!function_exists("demande_element1")) {
+		function demande_element1(){
+			$nom_utilisateur = "Nom utilisateur";
+			$nom_objet_envoye = "Objet a envoye";
+			$nom_objet_recue = "Objet a recevoir";
+			echo "<div class='card'>";
+				echo "<div class='card-header'>";
+					echo $nom_utilisateur;
+				echo "</div>";
+				echo "<div class='card-body'>";
+					echo "<div class='container'>";
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "<p>$nom_objet_envoye</p>";
+							echo "</div>";
+							echo "<div class='col-6'>";
+								echo "<p>$nom_objet_recue</p>";
+							echo "</div>";
+						echo "</div>";
+					echo "</div>";
+				echo "</div>";
+			echo "</div>";
+		}
+	}
+	if (!function_exists("demande_element2")) {
+		function demande_element2(){
+			$nom_utilisateur = "Nom utilisateur";
+			$nom_objet_envoye = "Objet a envoye";
+			$nom_objet_recue = "Objet a recevoir";
+			echo "<div class='card'>";
+				echo "<div class='card-header'>";
+					echo $nom_utilisateur;
+				echo "</div>";
+				echo "<div class='card-body'>";
+					echo "<div class='container'>";
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "<p>$nom_objet_envoye</p>";
+							echo "</div>";
+							echo "<div class='col-6'>";
+								echo "<p>$nom_objet_recue</p>";
+							echo "</div>";
+						echo "</div>";
+					echo "</div>";
+				echo "</div>";
+				echo "<div class='card-footer text-center'>";
+					echo "<div class='btn-group' role='group' aria-label='Accept or decline'>";
+						echo "<button type='button' class='btn btn-success'>Accepter</button>";
+						echo "<button type='button' class='btn btn-danger'>Refuser</button>";
+					echo "</div>";
+				echo "</div>";
+			echo "</div>";
+		}
+	}
 ?>

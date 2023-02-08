@@ -41,24 +41,24 @@
                     >
                     <i class="fas fa-home fa-fw me-3"></i><span>Accueil</span>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action py-2">
-                    <i class="fas fa-users fa-fw me-3"></i><span>Client</span>
+				<a href="#" class="list-group-item list-group-item-action py-2">
+                    <i class="fas fa-user fa-fw me-3"></i><span><?php
+						echo $current_user["nom"];
+					?></span>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action py-2"
-                   ><i class="fas fa-warehouse fa-fw me-3"></i><span>Stock</span></a
-                >
-                <a href="#" class="list-group-item list-group-item-action py-2"
-                   ><i class="fas fa-chart-line fa-fw me-3"></i><span>Recette</span></a
-                >
-                <a href="#" class="list-group-item list-group-item-action py-2"
-                   ><i class="fas fa-balance-scale fa-fw me-3"></i><span>Commission</span></a
-                >
-                <a href="#" class="list-group-item list-group-item-action py-2"
-                   ><i class="fas fa-store fa-fw me-3"></i><span>Boutiques</span></a
-                >
-                <a href="#" class="list-group-item list-group-item-action py-2"
-                   ><i class="fas fa-mail-bulk fa-fw me-3"></i><span>Factures</span></a
-                >
+                <a href="#" class="list-group-item list-group-item-action py-2">
+                    <i class="fas fa-users fa-fw me-3"></i><span>Utilisateurs</span>
+                </a>
+				
+                <a href="#" class="list-group-item list-group-item-action py-2">
+					<i class="fas fa-inbox fa-fw me-3"></i><span>Liste des demandes recues</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2">
+					<i class="fas fa-clock fa-fw me-3"></i><span>Liste des demandes envoye</span>
+				</a>
+				<a href="#" class="list-group-item list-group-item-action py-2">
+					<i class="fas fa-mail-bulk fa-fw me-3"></i><span>Liste des echanges</span>
+				</a>
             </div>
         </div>
     </nav>
