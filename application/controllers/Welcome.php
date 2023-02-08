@@ -20,7 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load_view("frontoffice/Acceuil", "Bienvenue dans Takalo", array("da" => ""));
+		$this->load_view("frontoffice/user", "Bienvenue dans Takalo", array("da" => ""));
 	}
 	public function load_view($contents, $title, $data){
 		$data_["contents"] = $contents;

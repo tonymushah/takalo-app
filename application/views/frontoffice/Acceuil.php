@@ -19,17 +19,59 @@
 		<div class="col-md-6">
 			<h3>Recentes mise en ligne</h3>
 			<div>
-				<?php
-					$i = 0;
-					for($i = 0; $i < 10; $i++) {
-						simple_objet_componnent1();
-					};
-				?>
+				<div class="row">
+					<?php
+						$i = 0;
+						for($i = 0; $i < 6; $i++) {
+							echo "<div class='col-6 col-md-6 col-lg-4'>";
+								simple_objet_componnent1();
+							echo "</div>";
+						};
+					?>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<h3>Recentes echanges</h3>
-			<div></div>
+			<div>
+				<div class="row">
+					<?php
+						for($i = 0; $i < 5; $i++) {
+							echo "<div class=''>";
+								echange_componnent1();
+							echo "</div>";
+						};
+					?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<h2 class="text-center mb-3 mt-3">Decouvrer nos categories</h2>
+		<div class="container">
+			<div class="row">
+				<?php
+					for ($i=0; $i < 2; $i++) { 
+						echo "<div class='col-md-6'>";
+							categorie_componnent1();
+						echo "</div>";
+					}
+				?>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<h2 class="text-center mb-3 mt-3">Nos utilisateurs</h2>
+		<div class="container">
+			<div class="row">
+				<?php
+					for ($i=0; $i < 10; $i++) { 
+						echo "<div class='col-md-6 col-lg-4'>";
+							utilisateur_componnent1();
+						echo "</div>";
+					}
+				?>
+			</div>
 		</div>
 	</div>
 </div>
