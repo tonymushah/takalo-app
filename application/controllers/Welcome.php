@@ -20,6 +20,13 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load_view("frontoffice/Acceuil", "Bienvenue dans Takalo", array("da" => ""));
+	}
+	public function load_view($contents, $title, $data){
+		$data_["contents"] = $contents;
+		$data_["data"] = $data;
+		$data_["title"] = $title;
+		$this->load->helper("objet_componnent");
+		$this->load->view('frontoffice/templates', $data_);
 	}
 }
