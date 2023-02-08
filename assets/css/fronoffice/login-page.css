@@ -1,0 +1,17 @@
+.cyan-bg{
+	background-color: #80E8FF;
+}
+.cyan2-bg{
+	background-color: #CDFFFF;
+}
+.nav-link.active{
+	--mdb-nav-tabs-link-active-bg: #56E1FF;
+	--mdb-nav-tabs-link-hover-bgc: #cae0ff;
+}
+.nav-tabs.nav-link{
+	--mdb-nav-tabs-link-hover-bgc: #cae0ff;
+}
+
+body{
+	height: 100vh;
+}
