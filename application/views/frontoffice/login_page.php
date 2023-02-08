@@ -38,11 +38,11 @@
 						<div class="container">
 							<div class="row">
 								<?php
-									if (isset($error) == true) {
-										echo "<div class='alert alert-danger' role='alert'>";
-										echo $error;
-										echo "</div>";
-									}
+								if (isset($error) == true) {
+									echo "<div class='alert alert-danger' role='alert'>";
+									echo $error;
+									echo "</div>";
+								}
 								?>
 							</div>
 							<div class=" row cyan2-bg rounded-4">
@@ -61,7 +61,7 @@
 												<div class="row mt-3">
 													<div class="mb-3">
 														<label for="exampleFormControlInput1" class="form-label">
-															Pseudo
+															Nom
 														</label>
 														<input type="text" class="form-control" name="nom" id="exampleFormControlInput1" placeholder="" required>
 													</div>
@@ -85,29 +85,18 @@
 										</div>
 									</div>
 									<div class="tab-pane fade" id="sign-in" role="tabpanel" aria-labelledby="sign-in-tab" tabindex="1">
-										<form method="post">
+										<form method="post" action="<?php
+																	echo base_url('frontoffice/register_user')
+																	?>">
 											<div class="row">
-												<div class="col-lg-6">
-													<div class="mb-3">
-														<label for="nom" class="form-label">Nom</label>
-														<input type="text" class="form-control" id="nom" required>
-													</div>
-												</div>
-												<div class="col-lg-6">
-													<div class="mb-3">
-														<label for="pseudo-sign-in" class="form-label">Pseudo</label>
-														<input type="text" class="form-control" id="pseudo-sign-in" required>
-													</div>
+												<div class="mb-3">
+													<label for="nom" class="form-label">Nom</label>
+													<input type="text" name="nom" class="form-control" id="nom" required>
 												</div>
 											</div>
 											<div class="mb-3">
 												<label for="mot-de-passe-1" class="form-label">Mot de passe</label>
-												<input type="password" class="form-control" id="mot-de-passe-1" required>
-											</div>
-											<div class="mb-3">
-												<label for="mot-de-passe-2" class="form-label">Confirmer votre mot de
-													passe</label>
-												<input type="password" class="form-control" id="mot-de-passe-2" required>
+												<input type="password" name="mot_de_passe" class="form-control" id="mot-de-passe-1" required>
 											</div>
 											<div class="mb-4 mt-4 text-center">
 												<button type="submit" class="btn btn-success">S'inscrire</button>

@@ -26,24 +26,14 @@ class Frontoffice extends CI_Controller {
 		$this->load->helper("objet_componnent");
 		$this->load->view('frontoffice/templates', $data_);
 	}
-    public function index(){
-		if($this->validate_sessions()){
-			$data = [];
-			$this->load_view("frontoffice/Acceuil.php", "Bienvenue dans Takalo", $data);
-		}else{
-			$this->load->view('frontoffice/login_page');
-		}
-    }
-
+    
     public function register_user(){
         $nom = $this->input->post('nom');
         $mot_de_passe = $this->input->post('mot_de_passe');
- 
         $data = array(
             'nomUtilisateur' => $nom,
             'mdp' => $mot_de_passe
         );
- 
         $this->register_model->insert_data($data);
         $this->index();
     }
@@ -54,15 +44,6 @@ class Frontoffice extends CI_Controller {
         $this->load->view('users', $data);
     }
 
-    public function home(){
-		$data = [];
-		$this->load_view("frontoffice/Acceuil.php", "Bienvenue dans Takalo", $data);
-	}
-	public function disconnect(){
-		$data = ["id", "nom"];
-		$this->session->unset_userdata($data);
-		redirect('');
-	}
     public function validate_credentials(){
         $nom = $this->input->post('nom');
         $mot_de_passe = $this->input->post('mot_de_passe');
@@ -75,7 +56,7 @@ class Frontoffice extends CI_Controller {
                 'nom' => $result["nom"]
             );
             $this->session->set_userdata($session_data);
-            redirect('frontoffice/home');
+            redirect('');
         } else {
             $data = array(
                 'error' => 'Nom d\'utilisateur ou mot de passe incorrect'
@@ -169,7 +150,57 @@ class Frontoffice extends CI_Controller {
         // Afficher une page de confirmation ou rediriger vers une autre page
         $this->load->view('confirmation_echange');
     }
-    
+
+
+    public function home(){
+		$data = [];
+		$data["recent_uploads"] = $this->register_model->get_recent_objects();
+		$data['users'] = $this->register_model->get_users();
+		$data['categories_data'] = $this->register_model->get_all_categories_with_objects();
+		$this->load_view("frontoffice/Acceuil.php", "Bienvenue dans Takalo", $data);
+	}
+	
+	public function disconnect(){
+		$data = ["id", "nom"];
+		$this->session->unset_userdata($data);
+		redirect('');
+	}
+	public function index(){
+		if($this->validate_sessions()){
+			$this->home();
+		}else{
+			$data["error"] = "Une erreur s'est produite";
+			$this->load->view('frontoffice/login_page');
+		}
+    }
+	public function user_me()
+	{
+		if($this->validate_sessions()){
+			$current_user["id"] = $this->session->userdata("id");
+			$current_user["nom"] = $this->session->userdata("nom");
+			$current_user_objects = $this->register_model->get_objects_by_id($current_user["id"]);
+			$data["current_user"] = $current_user;
+			$data["current_user_objects"] = $current_user_objects;
+			$this->load_view("frontoffice/user", sprintf("%s - Takalo Utilisateur", $current_user["nom"]), $data);
+		}else{
+			$data["error"] = "Une erreur s'est produite";
+			$this->load->view('frontoffice/login_page');
+		}
+	}
+	public function user($id){
+		if($this->validate_sessions()){
+			$to_use = $this->register_model->get_users_by_id($id)[0];
+			$current_user["id"] = $to_use->id;
+			$current_user["nom"] = $to_use->nomUtilisateur;
+			$current_user_objects = $this->register_model->get_objects_by_id($current_user["id"]);
+			$data["current_user"] = $current_user;
+			$data["current_user_objects"] = $current_user_objects;
+			$this->load_view("frontoffice/user", sprintf("%s - Takalo Utilisateur", $current_user["nom"]), $data);
+		}else{
+			$data["error"] = "Une erreur s'est produite";
+			$this->load->view('frontoffice/login_page');
+		}
+	}
 }
 
 

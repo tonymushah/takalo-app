@@ -34,7 +34,7 @@ class Register_model extends CI_Model {
         $query = $this->db->get('Utilisateur');
         if($query->num_rows() == 1){
             $utilisateur=$query->row();
-            return array("id" => $utilisateur->id, "nom" => $utilisateur->nomutilisateur);
+            return array("id" => $utilisateur->id, "nom" => $utilisateur->nomUtilisateur);
         }
         return 0;
     }
@@ -140,7 +140,48 @@ class Register_model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-
+	public function get_recent_objects($limit = null){
+		if($limit == null){
+			$query = $this->db->query("select Objet.id as idObjet, nomObjet, description, proprietaireId as idUtilisateur, nomUtilisateur from Objet join Utilisateur on Objet.proprietaireId = Utilisateur.id order by idObjet desc");
+		}else{
+			$query = $this->db->query(sprintf("select Objet.id as idObjet, nomObjet, description, proprietaireId as idUtilisateur, nomUtilisateur from Objet join Utilisateur on Objet.proprietaireId = Utilisateur.id order by idObjet desc limit %d"), $limit);
+		}
+		
+		$result = [];
+		$i = 0;
+		foreach ($query->result() as $row) {
+			$result[$i]["id"] = $row->idObjet;
+			$result[$i]["nom"] = $row->nomObjet;
+			$result[$i]["description"] = $row->description;
+			$result[$i]["proprietaire"] = array(
+				"id" => $row->idUtilisateur,
+				"nom" => $row->nomUtilisateur
+			);
+			$i++;
+		}
+		return $result;
+	}
+	public function get_recent_objects_by_category($idCategory, $limit=null){
+		if($limit == null){
+			$query = $this->db->query(sprintf("select Objet.id as idObjet, nomObjet, description, proprietaireId as idUtilisateur, nomUtilisateur from Objet join Utilisateur on Objet.proprietaireId = Utilisateur.id where idCategory=%d order by idObjet desc ", $idCategory));
+		}else{
+			$query = $this->db->query(sprintf("select Objet.id as idObjet, nomObjet, description, proprietaireId as idUtilisateur, nomUtilisateur from Objet join Utilisateur on Objet.proprietaireId = Utilisateur.id where idCategory=%d order by idObjet desc limit %d", $idCategory, $limit));
+		}
+		
+		$result = [];
+		$i = 0;
+		foreach ($query->result() as $row) {
+			$result[$i]["id"] = $row->idObjet;
+			$result[$i]["nom"] = $row->nomObjet;
+			$result[$i]["description"] = $row->description;
+			$result[$i]["proprietaire"] = array(
+				"id" => $row->idUtilisateur,
+				"nom" => $row->nomUtilisateur
+			);
+			$i++;
+		}
+		return $result;
+	}
     public function enregistrer_echange($demandeur_id, $accepteur_id,$id_objet_demandeur,$id_objet_accepteur) {
         $data = array(
             'demandeurId' => $demandeur_id,
@@ -149,9 +190,25 @@ class Register_model extends CI_Model {
             'idObjetAccepteur' => $id_objet_accepteur,
             'status' => 'pending'
         );
-    
         $this->db->insert('echange', $data);
     }
-    
-        
+    public function get_all_categories(){
+		$query = $this->db->query("select * from Category");
+		$result = [];
+		foreach ($query->result() as $row) {
+			$result[] = $row;
+		}
+		return $result;
+	}
+	public function get_all_categories_with_objects(){
+		$all_category = $this->get_all_categories();
+		$result = [];
+		$i = 0;
+		foreach ($all_category as $row) {
+			$result[$i]["nom_categorie"] = $row->nom;
+			$result[$i]["objets"] = $this->get_recent_objects_by_category($row->id);
+			$i++;
+		}
+		return $result;
+	}
 }

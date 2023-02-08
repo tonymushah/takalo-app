@@ -1,10 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 	if (!function_exists("simple_objet_componnent1")) {
-		function simple_objet_componnent1(){
-			$utilisateur = "utilisateur";
-			$image_src = "/assets/imgs/namroud-gorguis-FZWivbri0Xk-unsplash.jpg";
-			$title = "Object title";
-			$object_link = "#";
+		function simple_objet_componnent1($utilisateur, $object_link = "#",$title = "Object title", $image_src = "/assets/imgs/namroud-gorguis-FZWivbri0Xk-unsplash.jpg"
+			){
+			
 			echo "<div class=' card m-1'>";
 				echo "<div class=' card-header text-center'>$utilisateur</div>";
 				echo "<img class=' card-img' src='$image_src'/>";
@@ -16,17 +14,15 @@
 		}
 	}
 	if (!function_exists("simple_objet_componnent2")) {
-		function simple_objet_componnent2(){
-			$utilisateur = "utilisateur";
+		function simple_objet_componnent2($utilisateur, $title, $object_link){
+			$utilisateur_nom = $utilisateur["nom"];
 			$image_src = "/assets/imgs/namroud-gorguis-FZWivbri0Xk-unsplash.jpg";
-			$title = "Object title";
-			$object_link = "#";
 			echo "<div class=' card mt-1 mb-1'>";
 				echo "<img class=' card-img' src='$image_src'/>";
 				echo "<div class=' card-body m-0 p-1 text-center'> ";
 				echo "<div class=' card-title'><a href='$object_link'> $title</a></div>";
 				echo "</div>";
-				echo "<div class=' card-footer text-center'>$utilisateur</div>";
+				echo "<div class=' card-footer text-center'>$utilisateur_nom</div>";
 			echo "</div>";
 		}
 	}
@@ -42,19 +38,27 @@
 		}
 	}
 	if (!function_exists("categorie_componnent1")) {
-		function categorie_componnent1(){
-			$nom_categorie = "Nom categorie";
-			$object_inside = [];
+		function categorie_componnent1($nom_categorie, $objets){
 			echo "<div class='card'>";
 				echo "<div class='card-header text-center'><h2>$nom_categorie</h2></div>";
 				echo "<div class='card-body'>";
 					echo "<div class='container'>";
 						echo "<div class='row'>";
-							for($i=0; $i < 3; $i++){
+						if(count($objets) < 3){
+							for($i=0; $i < count($objets); $i++){
+								$to_use = $objets[$i];
 								echo "<div class='col-6 col-lg-4'>";
-									simple_objet_componnent2();
+									simple_objet_componnent2($to_use["proprietaire"], $to_use["nom"], "");
 								echo "</div>";
 							}
+						}else{
+							for($i=0; $i < 3; $i++){
+								$to_use = $objets[$i];
+								echo "<div class='col-6 col-lg-4'>";
+									simple_objet_componnent2($to_use["proprietaire"], $to_use["nom"], "");
+								echo "</div>";
+							}
+						}
 						echo "</div>";
 					echo "</div>";
 				echo "</div>";
@@ -62,11 +66,10 @@
 		}
 	}
 	if (!function_exists("utilisateur_componnent1")) {
-		function utilisateur_componnent1(){
-			$nom_utilisateur = "Nom utilisateur";
+		function utilisateur_componnent1($nom_utilisateur, $id){
 			$image_src = "/assets/imgs/namroud-gorguis-FZWivbri0Xk-unsplash.jpg";
-			$nombre_echange = 13;
-			$nombre_d_objet = 26;
+			$nombre_echange = 0;
+			$nombre_d_objet = 0;
 			echo "<div class='card mt-1 mb-1'>";
 				echo "<div class='row g-0'>";
 					echo "<div class='col-lg-4'>";
@@ -74,9 +77,11 @@
 					echo "</div>";
 					echo "<div class='col-lg-8'>";
 						echo "<div class='card-body'>";
-							echo "<h5 class='card-title'>";
+							echo "<a href='"; 
+								echo base_url(sprintf("frontoffice/user/%d", $id));
+							echo"'><h5 class='card-title'>";
 								echo $nom_utilisateur;
-							echo "</h5>";
+							echo "</h5></a>";
 							echo "<p class='card-text'>Nombre d'echanges : $nombre_echange</p>";
 							echo "<p class='card-text'>Nombre d'echanges : $nombre_d_objet</p>";
 						echo "</div>";
@@ -86,18 +91,17 @@
 		}
 	}
 	if (!function_exists("simple_objet_componnent3")) {
-		function simple_objet_componnent3(){
+		function simple_objet_componnent3($title, $object_link, $prix){
 			$image_src = "/assets/imgs/namroud-gorguis-FZWivbri0Xk-unsplash.jpg";
 			$title = "Object title";
 			$object_link = "#";
-			$nombre_demande = 100;
 			echo "<div class=' card m-1'>";
 				echo "<img class=' card-img' src='$image_src'/>";
 				echo "<div class=' card-body m-0 p-1 text-center'> ";
 				echo "<div class=' card-title'>$title</div>";
 					echo "<div classs='row'>";
-						echo "<p class='text-center card-text'>Nombre de demande: </p>";
-						echo "<h3 class='text-center card-text'>$nombre_demande</h3>";
+						echo "<p class='text-center card-text'>Prix: </p>";
+						echo "<h3 class='text-center card-text'>$prix</h3>";
 					echo "</div>";
 				echo "</div>";
 				echo "<div class=' card-footer text-center'> <a href='$object_link'><button type='button' class='btn btn-success'>Details</button></a> </div>";

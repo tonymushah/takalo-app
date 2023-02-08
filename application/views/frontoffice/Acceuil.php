@@ -16,29 +16,15 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col">
 			<h3>Recentes mise en ligne</h3>
 			<div>
 				<div class="row">
 					<?php
-						$i = 0;
-						for($i = 0; $i < 6; $i++) {
-							echo "<div class='col-6 col-md-6 col-lg-4'>";
-								simple_objet_componnent1();
-							echo "</div>";
-						};
-					?>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<h3>Recentes echanges</h3>
-			<div>
-				<div class="row">
-					<?php
-						for($i = 0; $i < 5; $i++) {
-							echo "<div class=''>";
-								echange_componnent1();
+						for($i = 0; $i < count($recent_uploads); $i++) {
+							$to_use = $recent_uploads[$i];
+							echo "<div class='col-6 col-md-6 col-lg-3'>";
+								simple_objet_componnent1($to_use["proprietaire"]["nom"], "#", $to_use["nom"]);
 							echo "</div>";
 						};
 					?>
@@ -53,7 +39,7 @@
 				<?php
 					for ($i=0; $i < 2; $i++) { 
 						echo "<div class='col-md-6'>";
-							categorie_componnent1();
+							categorie_componnent1($categories_data[$i]["nom_categorie"], $categories_data[$i]["objets"]);
 						echo "</div>";
 					}
 				?>
@@ -65,9 +51,10 @@
 		<div class="container">
 			<div class="row">
 				<?php
-					for ($i=0; $i < 10; $i++) { 
+					for ($i=0; $i < count($users); $i++) { 
+						$to_use = $users[$i];
 						echo "<div class='col-md-6 col-lg-4'>";
-							utilisateur_componnent1();
+							utilisateur_componnent1($to_use->nomUtilisateur, $to_use->id);
 						echo "</div>";
 					}
 				?>

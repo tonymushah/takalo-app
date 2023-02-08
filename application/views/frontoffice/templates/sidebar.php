@@ -34,14 +34,16 @@
                
                 <a
                     href="<?php
-						base_url();
+						echo base_url();
 					?>"
                     class="list-group-item list-group-item-action py-2 "
                     aria-current="true"
                     >
                     <i class="fas fa-home fa-fw me-3"></i><span>Accueil</span>
                 </a>
-				<a href="#" class="list-group-item list-group-item-action py-2">
+				<a href="<?php
+						echo base_url("frontoffice/user_me");
+					?>" class="list-group-item list-group-item-action py-2">
                     <i class="fas fa-user fa-fw me-3"></i><span><?php
 						echo $current_user["nom"];
 					?></span>
@@ -58,6 +60,9 @@
 				</a>
 				<a href="#" class="list-group-item list-group-item-action py-2">
 					<i class="fas fa-mail-bulk fa-fw me-3"></i><span>Liste des echanges</span>
+				</a>
+				<a href="<?php echo base_url('/frontoffice/disconnect');?>" class="list-group-item list-group-item-action text-danger py-2">
+					<i class="fas fa-external-link fa-fw me-3"></i><span>Se deconnecter</span>
 				</a>
             </div>
         </div>
